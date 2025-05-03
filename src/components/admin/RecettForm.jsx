@@ -5,6 +5,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+    import { toast } from 'react-hot-toast';
+
 
 const RecipeForm = () => {
     const [ingredientsList, setIngredients] = useState([]);
@@ -69,7 +71,7 @@ const RecipeForm = () => {
             axios.post('http://localhost:8000/recettes', newRecette)
                 .then((res) => {
                     console.log('Recette ajoutée avec succès:', res.data);
-                    alert('Recette ajoutée avec succès !');
+                    toast.success('Recette ajoutée avec succès !');
                     formik.resetForm();
                     setImagePreview(null); 
                 })

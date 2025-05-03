@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
-
+import toast from 'react-hot-toast';
 const Register = () => {
     const navigate = useNavigate();
     const [formData, setFormData] = useState({
@@ -21,11 +21,12 @@ const Register = () => {
 
         try {
             await axios.post('http://localhost:8000/users', formData);
-            alert('Inscription réussie !');
+            // alert('Inscription réussie !');
+            toast.success('Inscription réussie !');
             navigate('/login');
         } catch (err) {
             console.error(err);
-            alert("Erreur lors de l'inscription");
+            toast.error('Erreur lors de l\'inscription ');
         }
     };
 

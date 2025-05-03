@@ -9,11 +9,12 @@ import Register from './components/Register';
 import Login from './components/Loging';
 import AdminRecettesList from './components/admin/AdminRecettesList';
 import EditRecipeForm from './components/admin/EditRecipeForm';
+import { Toaster } from 'react-hot-toast';
 function App() {
   return (
     <div className="min-h-screen w-full bg-gray-100">
       <NavBar />
-
+      <Toaster position="top-center" />
       <div className="p-4">
         <Routes>
           <Route path="/" element={<Home />} />
