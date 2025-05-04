@@ -1,15 +1,25 @@
+
+
+
+
 import './App.css';
 import { Routes, Route } from 'react-router-dom';
-import Home from './components/Home';
-import RecetteDetail from './components/RecetteDetail';
-import NavBar from './components/NavBar';
-import RecipeForm from './components/admin/RecettForm';
-// import Fetch from './components/importing';
-import Register from './components/Register';
-import Login from './components/Loging';
-import AdminRecettesList from './components/admin/AdminRecettesList';
+import Home from './pages/Home';
+import RecetteDetail from './pages/RecetteDetail'
+import NavBar from './components/layout/NavBar';
 import EditRecipeForm from './components/admin/EditRecipeForm';
+import Register from './pages/Register';
+import Login from './pages/Loging';
+import AdminRecettesList from './components/admin/AdminRecettesList';
+import ProtectedRoute from './components/layout/ProtectedRoute'
+import Dashboard from './components/admin/Dashboard';
+import RecipeForm from './components/admin/RecettForm';
+import Footer from './components/layout/Footer';
+import About from './pages/About';
 import { Toaster } from 'react-hot-toast';
+import { Import } from 'lucide-react';
+
+
 function App() {
   return (
     <div className="min-h-screen w-full bg-gray-100">
@@ -18,23 +28,48 @@ function App() {
       <div className="p-4">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/RecipeForm" element={<RecipeForm />} />
-          {/* <Route path="/recette/det" element={<RecetteDetail />} /> */}
+          <Route path="/about" element={<About />} />
           <Route path="/recette/:id" element={<RecetteDetail />} />
-          {/* <Route path="/Fetch" element={<Fetch />} /> */}
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/AdminRecettesList" element={<AdminRecettesList/>} />
-          {/* <Route path="/admin/recettes/edit/:id" element={<RecipeEditForm />} />
-           */}
-          <Route path="/recettes/:id/edit" element={<EditRecipeForm />} />
 
+          <Route
+            path="/RecipeForm"
+            element={
+              <ProtectedRoute role="admin">
+                <RecipeForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/AdminRecettesList"
+            element={
+              <ProtectedRoute role="admin">
+                
+                <AdminRecettesList />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute role="admin">
+                <Dashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/recettes/:id/edit"
+            element={
+              <ProtectedRoute role="admin">
+                <EditRecipeForm />
+              </ProtectedRoute>
+            }
+          />
+         
 
-          {/* <Route path="/contact" element={<Contact />} /> */}
-          {/* <Route path="/create" element={<ArticleForm />} /> */}
-          {/* <Route path="/recette/:id/edit" element={<ArticleForm />} /> */}
-        
         </Routes>
+        <Footer />
       </div>
     </div>
   );

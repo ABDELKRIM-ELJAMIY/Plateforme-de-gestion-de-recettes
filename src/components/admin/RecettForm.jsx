@@ -98,12 +98,9 @@ const RecipeForm = () => {
         const file = e.target.files[0];
         if (file) {
             try {
-                // Convert the file to base64
                 const base64 = await convertToBase64(file);
-                // Set the base64 string in formik
                 formik.setFieldValue('imageBase64', base64);
                 formik.setFieldValue('image', file);
-                // Create a preview
                 setImagePreview(base64);
             } catch (error) {
                 console.error("Error converting image to base64:", error);
@@ -239,7 +236,6 @@ const RecipeForm = () => {
                         <p className="text-red-500 text-sm">{formik.errors.imageBase64}</p>
                     )}
 
-                    {/* Image preview */}
                     {imagePreview && (
                         <div className="mt-4">
                             <p className="text-sm text-gray-700 mb-2">Aperçu de l'image:</p>

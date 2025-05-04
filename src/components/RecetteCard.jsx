@@ -49,15 +49,7 @@ const RecetteCard = () => {
                     )}
                     <h2 className="text-xl font-semibold text-gray-800 mb-2">{recette.title}</h2>
                     <p className="text-gray-600 mb-4">{recette.description}</p>
-                    <button
-                        onClick={(e) => {
-                            e.stopPropagation(); 
-                            handleDetails(recette.id);
-                        }}
-                        className="mt-auto bg-amber-400 hover:bg-orange-600 text-white py-2 px-4 rounded-lg"
-                    >
-                        Détails
-                    </button>
+                   
                 </div>
             ))}
         </div>

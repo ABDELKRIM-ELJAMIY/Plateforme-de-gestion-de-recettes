@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useParams, useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast'; // ✅ toast importé
+import { toast } from 'react-hot-toast'; 
 
 const EditRecipeForm = () => {
     const { id } = useParams();
@@ -30,12 +30,12 @@ const EditRecipeForm = () => {
                     });
                     setImagePreview(recette.image);
                 } else {
-                    toast.error('Recette non trouvée.'); // ✅ remplacé alert
+                    toast.error('Recette non trouvée.'); 
                 }
             })
             .catch((err) => {
                 console.error('Error fetching recipes:', err);
-                toast.error('Erreur lors de la récupération des recettes.'); // ✅ remplacé alert
+                toast.error('Erreur lors de la récupération des recettes.'); 
             });
 
         axios.get('http://localhost:8000/ingredients')
@@ -45,7 +45,7 @@ const EditRecipeForm = () => {
             })
             .catch((err) => {
                 console.error('Error fetching ingredients:', err);
-                toast.error('Erreur lors de la récupération des ingrédients.'); // ✅ remplacé alert
+                toast.error('Erreur lors de la récupération des ingrédients.'); 
             });
     }, [id]);
 
@@ -78,12 +78,12 @@ const EditRecipeForm = () => {
 
             axios.put(`http://localhost:8000/recettes/${id}`, updatedRecipe)
                 .then((res) => {
-                    toast.success('Recette mise à jour avec succès !'); // ✅ remplacé alert
+                    toast.success('Recette mise à jour avec succès !'); 
                     navigate('/AdminRecettesList');
                 })
                 .catch((err) => {
                     console.error('Erreur lors de la mise à jour de la recette:', err);
-                    toast.error('Erreur lors de la mise à jour.'); // ✅ ajout
+                    toast.error('Erreur lors de la mise à jour.'); 
                 });
         }
     });
@@ -107,7 +107,7 @@ const EditRecipeForm = () => {
                 setImagePreview(base64);
             } catch (error) {
                 console.error('Error converting image to base64:', error);
-                toast.error('Erreur lors du traitement de l\'image.'); // ✅ ajout
+                toast.error('Erreur lors du traitement de l\'image.'); 
             }
         }
     };
